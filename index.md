@@ -1,8 +1,6 @@
-## Welcome to use MTracker
+## Welcome to MTracker
 
-You can use the [editor on GitHub](https://github.com/LukeZhu/lingjzhu.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+**MTracker** is a tool for automatic splining tongue shapes in ultrasound images by harnessing the power of deep convolutional neural networks. It is developed at the Department of Linguistics, University of Michgian to address the need of spining a large-scale ultrasound project. MTracker also allows for human correction by interfacing with GetContour developed by Mark Tiede in the Haskins Laboratory.
 
 ### MTracker
 
@@ -28,10 +26,16 @@ Syntax highlighted code block
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### Jekyll Themes
+### Dependencies
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/LukeZhu/lingjzhu.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+- Python 3.5
+- Keras
+- Tensorflow 1.4.1
+- Scikit-image 1.3.0
+- CUDA and CUDNN（if you need GPU support）
+
+Installing Tensorflow can be a painful process. Please refer to the official documentation of Tensorflow and Keras for installation guides. 
 
 ### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Please contact Jian Zhu (lingjzhu@umich.edu), Will Styler (will@savethevowels.org) and Ian Calloway (iccallow@umich.edu) for support.
