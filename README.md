@@ -8,7 +8,7 @@ MTracker was developed by Jian Zhu, [Will Styler](http://savethevowels.org/will/
 
 It was first described in [a poster](https://github.com/lingjzhu/mtracker.github.io/blob/master/mtracker_asa2018_poster.pdf) at the [175th Meeting of the Acoustical Society of America in Minneapolis](https://acousticalsociety.org/program-of-175th-meeting-of-the-acoustical-society-of-america/).  The tools, and trained model, will be made available below.
 
-Practically speaking, we implemented the U-net architecture (Ronneberger et al. 2015[1]) in Python 3.5, Keras, and Tensorflow, which learns from human-annotated splines using repeated convolution and max-pooling layers for feature extraction (which simplify the image in feature-identifying ways), as well as skip connections, which reuse low level features to generate more spatially precise predictions of the tongue contours.
+Practically speaking, we implemented the U-net architecture (Ronneberger et al. 2015[^1]) in Python 3.5, Keras, and Tensorflow, which learns from human-annotated splines using repeated convolution and max-pooling layers for feature extraction (which simplify the image in feature-identifying ways), as well as skip connections, which reuse low level features to generate more spatially precise predictions of the tongue contours.
 
 ### Attribution and Citation
 
@@ -16,7 +16,7 @@ For now, until a peer-reviewed publication is available, you can cite this softw
 
 Zhu, J., Styler, W., and Calloway, I. C. (2018). Automatic tongue contour extraction in ultrasound images with convolutional neural networks. The Journal of the Acoustical Society of America, 143(3):1966–1966. [https://doi.org/10.1121/1.5036466](https://doi.org/10.1121/1.5036466)
 
-You can also send peiple to this website, [https://github.com/lingjzhu/mtracker.github.io/](https://github.com/lingjzhu/mtracker.github.io/).
+You can also send people to this website, [https://github.com/lingjzhu/mtracker.github.io/](https://github.com/lingjzhu/mtracker.github.io/).
 
 ## Installing MTracker
 
@@ -34,13 +34,17 @@ Installing Tensorflow can be a painful process. Please refer to the official doc
 
 ### Downloading the trained model
 
+(This content coming soon!)
+
 ### Preparing your data
+
+(This content coming soon!)
 
 ## Disclaimer
 
-This script package, although in production use by the authors and others at the University of Michigan, may still have bugs and quirks, alongside the difficulties and provisos which are described throughout the documentation. 
+This software, although in production use by the authors and others at the University of Michigan, may still have bugs and quirks, alongside the difficulties and provisos which are described throughout the documentation. 
 
-By using this script, you acknowledge:
+By using this software, you acknowledge:
 
 * That you understand that this software does not produce perfect camera-ready data, and that all results should be hand-checked for sanity's sake, or at the very least, noise should be taken into account.
 
@@ -66,4 +70,4 @@ Please contact Jian Zhu (lingjzhu@umich.edu), Will Styler (will@savethevowels.or
 
 ## References
 
-[1]: Ronneberger et al. 2015, U-Net: Convolutional Networks for Biomedical Image Segmentation, DOI:10.1007/978-3-319-24574-4_28
+[^1]: Ronneberger et al. 2015, U-Net: Convolutional Networks for Biomedical Image Segmentation, DOI:10.1007/978-3-319-24574-4_28
