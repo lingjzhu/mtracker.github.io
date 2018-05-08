@@ -2,6 +2,8 @@
 
 **MTracker** is a tool for automatic splining tongue shapes in ultrasound images by harnessing the power of deep convolutional neural networks. It is developed at the Department of Linguistics, University of Michgian to address the need of spining a large-scale ultrasound project. MTracker also allows for human correction by interfacing with the [GetContours Suite](https://github.com/mktiede/GetContours) developed by Mark Tiede at Haskins Laboratory.
 
+## We are still testing MTracker. We are planning to release our source codes in July, 2018.
+
 ## About MTracker
 
 MTracker was developed by Jian Zhu, [Will Styler](http://savethevowels.org/will/), and Ian Calloway at the University of Michigan, on the basis of data collected with [Patrice Beddor](https://sites.lsa.umich.edu/beddor/) and [Andries Coetzee](https://sites.lsa.umich.edu/coetzee/).  
@@ -24,11 +26,12 @@ To install MTracker for your own use, follow the instructions below:
 
 ### Dependencies
 
-- Python 3.5
-- Keras
-- Tensorflow 1.4.1
+- Python 3.5 or 3.6
+- Keras >2.0.8
+- Tensorflow-gpu, CUDA and CUDNN（if you need GPU support）or Tensorflow
 - Scikit-image 1.3.0
-- CUDA and CUDNN（if you need GPU support）
+- Imageio
+- Praatio
 
 Installing Tensorflow can be a painful process. Please refer to the official documentation of Tensorflow and Keras for installation guides.
 
