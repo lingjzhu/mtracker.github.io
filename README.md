@@ -10,7 +10,7 @@ MTracker was developed by Jian Zhu, [Will Styler](http://savethevowels.org/will/
 
 It was first described in [a poster](https://github.com/lingjzhu/mtracker.github.io/blob/master/mtracker_asa2018_poster.pdf) at the [175th Meeting of the Acoustical Society of America in Minneapolis](https://acousticalsociety.org/program-of-175th-meeting-of-the-acoustical-society-of-america/).  The tools, and trained model, will be made available below.
 
-Practically speaking, we implemented the U-net architecture (Ronneberger et al. 2015[^1]) in Python 3.5, Keras, and Tensorflow, which learns from human-annotated splines using repeated convolution and max-pooling layers for feature extraction (which simplify the image in feature-identifying ways), as well as skip connections, which reuse low level features to generate more spatially precise predictions of the tongue contours.
+This work is inspired by a [Deep Learning Tutorial for Kaggle Ultrasound Nerve Segmentation competition](https://github.com/jocicmarko/ultrasound-nerve-segmentation). Practically speaking, we implemented the U-net architecture (Ronneberger et al. 2015[^1]) in Python 3.5, Keras, and Tensorflow, which learns from human-annotated splines using repeated convolution and max-pooling layers for feature extraction (which simplify the image in feature-identifying ways), as well as skip connections, which reuse low level features to generate more spatially precise predictions of the tongue contours. 
 
 ### Attribution and Citation
 
