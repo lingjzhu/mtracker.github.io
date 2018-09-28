@@ -2,7 +2,7 @@
 
 **MTracker** is a tool for automatic splining tongue shapes in ultrasound images by harnessing the power of deep convolutional neural networks. It is developed at the Department of Linguistics, University of Michgian to address the need of spining a large-scale ultrasound project. MTracker also allows for human correction by interfacing with the [GetContours Suite](https://github.com/mktiede/GetContours) developed by Mark Tiede at Haskins Laboratory.
 
-## MTracker is still currently being tested. The pre-trained model can be found [here](https://drive.google.com/file/d/1GgUpTJ9riYAX9DPN0dHT-rIW4V67t1Ou/view?usp=sharing). We are also planning to release the test data very soon!
+## MTracker is still currently being tested. The pre-trained model can be found [here](https://drive.google.com/file/d/1GgUpTJ9riYAX9DPN0dHT-rIW4V67t1Ou/view?usp=sharing). We are still working on the documentation. The test data will also be released very soon!
 ### If you are interested in using MTracker in your research, you can send an email to Jian Zhu (lingjzhu@umich.edu). We will send a notification to you once MTracker is ready. Thanks very much for your interest.
 
 ## About MTracker
