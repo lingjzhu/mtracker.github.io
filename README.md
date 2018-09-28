@@ -42,16 +42,16 @@ Installing Tensorflow can be a painful process. Please refer to the official doc
 
 ### Preparing your data
 
-(This content coming soon!)
+A muted ultrasound video for demonstration purpose is available in the "demo" folder.
 
 
 ### Quickstart guide
-	a. open "Track.py"
-	b. specify the paths to the input video, the pre-trained model and the output csv file.
-	   *please also specify the area that should be cropped by inputing a four-element array.	
-	c. run "Track.py"
-	d. each tongue contour represented by a 100-point coordinates, stored in a csv file
-	e. every Nth frame will be ploted for sanity check
+- open "Track.py"
+- specify the paths to the input video, the pre-trained model and the output csv file.
+   \*please also specify the area that should be cropped by inputing a four-element array.	
+- run "Track.py"
+- each tongue contour represented by a 100-point coordinates, stored in a csv file
+- every Nth frame will be ploted for sanity check
 
 ## Disclaimer
 
