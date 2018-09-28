@@ -1,0 +1,45 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri May 25 21:05:36 2018
+
+@author: zhuji
+"""
+
+1. Dependencies
+    Python >= 3.5
+    Keras >= 2.0.8
+    Tensorflow-gpu, CUDA and CUDNN（if you need GPU support）or Tensorflow
+    Scikit-image 1.3.0
+    Imageio （ffmpeg）
+    Praatio (optional)
+    
+2. Data
+    Ultrasound images are oriented to the right.
+    Right side -- Tongue tip
+    Left side -- Tongue root
+	
+	
+3. Usage
+	a. open "Track.py"
+	b. specify the paths to the input video, the pre-trained model and the output csv file.
+	   *please also specify the area that should be cropped by inputing a four-element array.	
+	c. run "Track.py"
+	d. each tongue contour represented by a 100-point coordinates, stored in a csv file
+	e. every Nth frame will be ploted for sanity check
+
+4. Folders/
+	- .~/Demo/demo.mp4 (short ultrasound video clip for demostraction)
+	- .~/models/model_y10.hdf5 (pre-trained CNN model)
+	- .~/network_structure.png (visualization of the network structure)
+	- .~/Track.py (codes to run CNN)
+	- .~/cnn_predict.py (functions to make prediction)
+	- .~/cnn_metrics.py (various loss functions)
+	- .~/cnn_model.py (codes for implementing the model)
+	- ./data_generator.py (utility functions for preprocessing)
+	- ./train.py (training the model)
+	
+	
+	
+	
+	
+	
