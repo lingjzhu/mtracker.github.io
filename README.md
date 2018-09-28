@@ -44,6 +44,15 @@ Installing Tensorflow can be a painful process. Please refer to the official doc
 
 (This content coming soon!)
 
+
+### Quickstart guide
+	a. open "Track.py"
+	b. specify the paths to the input video, the pre-trained model and the output csv file.
+	   *please also specify the area that should be cropped by inputing a four-element array.	
+	c. run "Track.py"
+	d. each tongue contour represented by a 100-point coordinates, stored in a csv file
+	e. every Nth frame will be ploted for sanity check
+
 ## Disclaimer
 
 This software, although in production use by the authors and others at the University of Michigan, may still have bugs and quirks, alongside the difficulties and provisos which are described throughout the documentation. 
