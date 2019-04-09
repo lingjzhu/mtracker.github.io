@@ -19,7 +19,7 @@ import pandas as pd
 import scipy
 from sklearn.metrics.pairwise import euclidean_distances
 from skimage.transform import resize
-from skimage.color import rgb2gray
+from skimage.color import rgb2gray,gray2rgb
 
 
 
@@ -33,10 +33,11 @@ def normalize(image,size=[64,128]):
     return image
 
 
-def crop(original_image,boundary = [97,362,95,507]):
+def crop(original_image,boundary = [97,362,95,507],gray=False):
     # load the image
-    cropped_image = original_image[boundary[0]:boundary[1],boundary[2]:boundary[3]]
-    image = rgb2gray(cropped_image)
+    image = original_image[boundary[0]:boundary[1],boundary[2]:boundary[3]]
+    if gray == True:
+        image = rgb2gray(image)
     return image        
 
 
@@ -50,11 +51,11 @@ def initialize(path_to_model):
         
 
 
-def get_spline(model,image,output_size=[265,412],preprocessing=True,boundary= [97,362,95,507]):
+def get_spline(model,image,output_size=[265,412],preprocessing=True):
     
     if preprocessing == True:
     # preprocess the image for prediction
-        image = crop(image,boundary) # crop the image
+        image = crop(image) # crop the image
         image = normalize(image) # normalize the image
     else:
         pass

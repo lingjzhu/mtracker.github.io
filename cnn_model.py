@@ -7,7 +7,7 @@ Created on Mon Jan 15 20:33:41 2018
 """
 
 from keras.models import Model
-from keras.layers import Input, concatenate, Conv2D, MaxPooling2D, Conv2DTranspose,Dropout
+from keras.layers import Input, concatenate, Conv2D, MaxPooling2D, Conv2DTranspose,Dropout,Lambda
 from keras.optimizers import Adam
 from keras.callbacks import ModelCheckpoint,CSVLogger,TensorBoard
 from keras import backend as K
@@ -15,7 +15,6 @@ from keras.utils import plot_model
 from keras.layers.normalization import BatchNormalization
 from keras import metrics
 import tensorflow as tf
-
 # convert the image to grayscale and then standardize the image
 import numpy as np
 import cnn_metrics as m
@@ -27,7 +26,7 @@ class Unet():
         pass
         
     
-    # convolutional blocks - two convolutional layers and one maxpooling layer
+    
     def __conv_block(self, inputs, filters, kernel_size=(3,3), activation='relu',padding='same',pooling=True):
         
         conv = Conv2D(filters, kernel_size, activation=activation, padding=padding)(inputs)
@@ -40,14 +39,14 @@ class Unet():
             return conv
 
 
-    # skip-concatenation of earlier layers 
+
     def __skip_concatenate(self, deconv,conv,filters,kernel_size=(2,2),strides=(2,2),padding='same'):
         transposed = Conv2DTranspose(filters, kernel_size, strides=strides, padding=padding)(deconv)
         merge_layer = concatenate([transposed, conv], axis=3)
         return merge_layer
 
 
-    # upsampling layers - one deconvolutional layer and two convolutional layers
+
     def __deconv_block(self, deconv,concat,filters):
         merged = self.__skip_concatenate(deconv,concat,filters=filters)
         conv = self.__conv_block(merged,filters=filters,pooling=False)
@@ -55,11 +54,11 @@ class Unet():
 
 
 
-    def initiate(self,rows=64,cols=128,channels=1):
+    def initiate(self,rows=64,cols=128,channels=1,loss='dice',lamb=5):
         
-        inputs = Input((rows, cols, channels))
+        images = Input((rows, cols, channels))
         
-        conv1,pool1 = self.__conv_block(inputs,filters=32,pooling=True)
+        conv1,pool1 = self.__conv_block(images,filters=32,pooling=True)
         
         conv2,pool2 = self.__conv_block(pool1,filters=64,pooling=True)
         
@@ -77,37 +76,72 @@ class Unet():
         
         conv9 = self.__deconv_block(deconv=conv8,concat=conv1,filters=32)
         
-        conv10 = Conv2D(1, (1, 1), activation='sigmoid')(conv9)
-    
-        model = Model(inputs=[inputs], outputs=[conv10])
-    
-        model.compile(optimizer=Adam(lr=1e-4), loss=m.dice_coef_loss, metrics=['accuracy',m.dice_coef,m.precision,m.recall])
         
+        if loss == "mse":
+            conv10 = Conv2D(1, (1, 1))(conv9)
+            model = Model(inputs=[images], outputs=[conv10])
+            model.compile(optimizer=Adam(lr=1e-4), loss='mse')
+        
+        else:
+            conv10 = Conv2D(1, (1, 1), activation='sigmoid')(conv9)
+            if loss == "dice":
+                model = Model(inputs=[images], outputs=[conv10])
+                model.compile(optimizer=Adam(lr=1e-4), loss=m.dice_coef_loss, 
+                              metrics=['accuracy',m.dice_coef,m.precision,m.recall])
+                
+            elif loss == "asymmetric":
+                model = Model(inputs=[images], outputs=[conv10])
+                model.compile(optimizer=Adam(lr=1e-4), loss=m.asymmetric_loss, 
+                              metrics=['accuracy',m.dice_coef,m.precision,m.recall])
+                
+            elif loss == "class_xentropy":
+                model = Model(inputs=[images], outputs=[conv10])
+                model.compile(optimizer=Adam(lr=1e-4), loss=m.cross_entropy_balanced, 
+                              metrics=['accuracy',m.dice_coef,m.precision,m.recall,m.fbeta_score])
+            
+            elif loss == "compound":
+                model = Model(inputs=[images], outputs=[conv10])
+                model.compile(optimizer=Adam(lr=1e-4), loss=m.Compound_loss(lamb=lamb),
+                       metrics=['accuracy',m.dice_coef,m.precision,m.recall])
+           
+            elif loss == "pixel_xentropy":
+                weights = Input((rows, cols, 1))
+                masks = Input((rows, cols, 1))
+                loss = Lambda(m.p_weighted_binary_loss, output_shape=(rows, cols, 1))([conv10, weights, masks])
+                model = Model(inputs=[images,masks,weights], outputs=loss)
+                model.compile(optimizer=Adam(lr=1e-4), loss=m.identity_loss, 
+                              metrics=['accuracy',m.dice_coef,m.precision,m.recall])
+                
         self.model = model
         
         return self.model
     
     
-    # plot model
+    
     def plot(self,file_path):
         plot_model(self.model, show_shapes=True,to_file=file_path)
         
         
-    # load pre-trained model 
+    
     def load(self, path):
         self.model.load_weights(path)
         
         
-    # begin training model   
-    def train(self,x_train,y_train,path_to_model,path_to_log,batch_size=20,epochs=50,vsplit=0.2):
+        
+    def train(self,x_train,y_train,x_vali,y_vali,path_to_model,path_to_log,batch_size=32,epochs=30,vsplit=0.2):
         
         checkpoint = ModelCheckpoint(path_to_model, monitor='val_loss', save_best_only=True)
         csv_logger = CSVLogger(path_to_log)
         self.model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, verbose=1, shuffle=True,
-              validation_split=vsplit,
+              validation_data=(x_vali,y_vali),
               callbacks=[checkpoint,csv_logger])
+              
+    def train_w(self,x_train,y_train,x_vali,y_vali,path_to_model,path_to_log,batch_size=32,epochs=30,vsplit=0.2):
+        checkpoint = ModelCheckpoint(path_to_model, monitor='val_loss', save_best_only=True)
+        csv_logger = CSVLogger(path_to_log)
+        self.model.fit([x_train, y_train],np.ones([len(y_train),64, 64, 1]), batch_size=batch_size, epochs=epochs, verbose=1, shuffle=True,validation_data=([x_vali,y_vali],np.ones([len(y_vali),64, 64, 1])),callbacks=[checkpoint,csv_logger])
+
         
-     # predict new data   
     def predict(self,image):
         
         prediction = self.model.predict(image)
@@ -115,8 +149,8 @@ class Unet():
         return prediction
 
 
-    # evaluate model performace
-    def evaluate(self,x_text,y_test,batch_size=20):
+    
+    def evaluate(self,x_text,y_test,batch_size=32):
         print(model.evaluate(x_test,y_test,batch_size=batch_size, verbose=1))
 
         

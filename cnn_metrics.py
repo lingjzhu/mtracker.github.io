@@ -11,6 +11,9 @@ from keras import backend as K
 import scipy
 from sklearn.metrics.pairwise import euclidean_distances
 import numpy as np
+import keras.backend as K
+import keras
+
 
 smooth = 1.
 
@@ -24,12 +27,93 @@ def dice_coef(y_true, y_pred):
 def dice_coef_loss(y_true, y_pred):
     return -dice_coef(y_true, y_pred)
 
+def f_beta (y_true, y_pred,beta=0.9):
+    y_true_f = K.flatten(y_true)
+    y_pred_f = K.flatten(y_pred)
+    intersection = K.sum(y_true_f * y_pred_f)
+    g_p = K.sum((1-y_pred_f)*y_true_f)
+    p_g = K.sum(y_pred_f*(1-y_true_f))
+    numerator = (1+beta**2)*intersection
+    denominator = (1+beta**2)*intersection+beta**2*g_p+p_g
+    return numerator / denominator
+
+def asymmetric_loss(y_true,y_pred,beta=0.7):
+    return -f_beta(y_true,y_pred,beta)
 
 
+def compound_loss(y_true, y_pred,lamb=5):
+     return dice_coef_loss(y_true, y_pred)+lamb*K.binary_crossentropy(y_true, y_pred)
+
+def Compound_loss(lamb=5):
+    
+    def compound_loss(y_true, y_pred):
+        return dice_coef_loss(y_true, y_pred)+lamb*K.binary_crossentropy(y_true, y_pred)
+
+    return compound_loss
+
+def cross_entropy_balanced(y_true, y_pred):
+    """
+    Implements Equation [2] in https://arxiv.org/pdf/1504.06375.pdf
+    Compute edge pixels for each training sample and set as pos_weights to tf.nn.weighted_cross_entropy_with_logits
+    """
+    # Note: tf.nn.sigmoid_cross_entropy_with_logits expects y_pred is logits, Keras expects probabilities.
+    # transform y_pred back to logits
+    _epsilon = _to_tensor(K.epsilon(), y_pred.dtype.base_dtype)
+    y_pred   = tf.clip_by_value(y_pred, _epsilon, 1 - _epsilon)
+    y_pred   = tf.log(y_pred/ (1 - y_pred))
+
+    y_true = tf.cast(y_true, tf.float32)
+
+    count_neg = tf.reduce_sum(1. - y_true)
+    count_pos = tf.reduce_sum(y_true)
+
+    # Equation [2]
+    beta = count_neg / (count_neg + count_pos)
+
+    # Equation [2] divide by 1 - beta
+    pos_weight = beta / (1 - beta)
+
+    cost = tf.nn.weighted_cross_entropy_with_logits(logits=y_pred, targets=y_true, pos_weight=pos_weight)
+
+    # Multiply by 1 - beta
+    cost = tf.reduce_mean(cost * (1 - beta))
+
+    # check if image has no edge pixels return 0 else return complete error function
+    return tf.where(tf.equal(count_pos, 0.0), 0.0, cost)
+
+
+def ofuse_pixel_error(y_true, y_pred):
+    pred = tf.cast(tf.greater(y_pred, 0.5), tf.int32, name='predictions')
+    error = tf.cast(tf.not_equal(pred, tf.cast(y_true, tf.int32)), tf.float32)
+    return tf.reduce_mean(error, name='pixel_error')
+
+def _to_tensor(x, dtype):
+    """Convert the input `x` to a tensor of type `dtype`.
+    # Arguments
+    x: An object to be converted (numpy array, list, tensors).
+    dtype: The destination type.
+    # Returns
+    A tensor.
+    """
+    x = tf.convert_to_tensor(x)
+    if x.dtype != dtype:
+        x = tf.cast(x, dtype)
+    return x
+
+
+
+def p_weighted_binary_loss(X):
+    y_pred, weights, y_true = X
+    loss = K.binary_crossentropy(y_pred, y_true)
+#    weights = weights*10+1
+    loss = keras.layers.multiply([loss, weights])
+    return loss
+
+def identity_loss(y_true, y_pred):
+    return y_pred
 ###############################################################################
 ########## define the evalutation metics for the test set ####################
 
-# These functions are implemented in earlier versions of Keras
 
 def matthews_correlation(y_true, y_pred):
     '''Calculates the Matthews correlation coefficient measure for quality
