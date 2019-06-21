@@ -8,7 +8,7 @@ Created on Fri May 25 21:05:36 2018
 1. Dependencies
     Python >= 3.5
     Keras >= 2.0.8
-    Tensorflow-gpu, CUDA and CUDNN（if you need GPU support）or Tensorflow
+    Tensorflow, CUDA and CUDNN（if you need GPU support)
     Scikit-image 1.3.0
     Imageio （ffmpeg）
     Praatio (optional)
@@ -17,7 +17,12 @@ Created on Fri May 25 21:05:36 2018
     Ultrasound images are oriented to the right.
     Right side -- Tongue tip
     Left side -- Tongue root
-	
+
+    Same-speaker dataset. 
+    North Wind and the Sun dataset. (Download here)
+    Ultrax dataset.
+    Ultraspeech dataset. 
+    
 	
 3. Usage
 	a. open "Track.py"
@@ -28,7 +33,7 @@ Created on Fri May 25 21:05:36 2018
 	e. every Nth frame will be ploted for sanity check
 
 4. Folders/
-	- .~/Demo/demo.mp4 (short ultrasound video clip for demostraction)
+	- .~/Demo/demo.mp4 (short ultrasound video clip for demonstration)
 	- .~/models/model_y10.hdf5 (pre-trained CNN model)
 	- .~/network_structure.png (visualization of the network structure)
 	- .~/Track.py (codes to run CNN)
