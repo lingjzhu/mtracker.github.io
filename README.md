@@ -33,6 +33,7 @@ To install MTracker for your own use, follow the instructions below:
 - Scikit-image 1.3.0
 - Imageio
 - Praatio
+- tqdm
 
 Installing Tensorflow can be a painful process. Please refer to the official documentation of Tensorflow and Keras for installation guides.
 
