@@ -27,9 +27,9 @@ To install MTracker for your own use, follow the instructions below:
 
 ### Dependencies
 
-- Python >= 3.5
+- Python >= 3.6
 - Keras >= 2.0.8
-- Tensorflow-gpu, CUDA and CUDNN（if you need GPU support）or Tensorflow
+- Tensorflow/Tensorflow-gpu, CUDA and CUDNN（if you need GPU support）
 - Scikit-image 1.3.0
 - Imageio
 - Praatio
@@ -39,7 +39,18 @@ Installing Tensorflow can be a painful process. Please refer to the official doc
 
 ### Downloading the trained model
 
-The pre-trained model can be found [here](https://drive.google.com/file/d/1GgUpTJ9riYAX9DPN0dHT-rIW4V67t1Ou/view?usp=sharing).
+#### The following models are the models that produce some of the results in Figure 2.
+- dense_aug.hdf5 -- Dense UNet model trained with 50% of the training data with augmentation
+- unet_aug.hdf5 -- UNet model trained with 50% of the training data with augmentation
+
+#### The following models are the models that produce the results in Table 1 and Table 2.
+- unet_xentropy.hdf5		
+- unet_dice.hdf5		
+- unet_compound.hdf5
+- dense_xentropy
+- dense_dice.hdf5
+- dense_compound.hdf5
+
 
 ### Preparing your data
 
@@ -47,11 +58,30 @@ A muted ultrasound video for demonstration purpose only is available in the "dem
 
 
 ### Quickstart guide
-- run python track_video.py -v ./demo/demo_video.py -t du -m path_to_model -o output_folder
-- specify the paths to the input video, the pre-trained model and the output csv file.
-   \*please also specify the area that should be cropped by inputing a four-element array.	
-- each tongue contour represented by a 100-point coordinates, stored in a csv file
-- every Nth frame will be ploted for sanity check
+#### tracking tongue contours in a video
+```
+python track_video.py -v ./demo/demo_video.mp4 -t du -m ./model/dense_aug.hdf5 -o ./demo -n 5
+```
+
+#### tracking tongue contours in an image sequence
+```
+python track_frames.py -i ./test_data/test_x -t du -m ./model/dense_aug.hdf5 -o ./demo -n 5
+```
+Note. Both scripts accept the following arguments. All arguments come with default values. So the script can be run directly using "python track_video.py" or "python track_frames.py"
+```
+   -v path to the video file;
+
+   -t model type; du for Dense UNet and u for UNet;
+
+   -m path to model;
+
+   -o path to the output folder;
+
+   -n plot the every Nth predicted contour on its corresponding raw frame for sanity check;
+
+   -b specify the boundy for cropping the Region of Interest;
+```
+
 
 ## Disclaimer
 
