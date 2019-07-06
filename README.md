@@ -70,6 +70,8 @@ python track_frames.py -i ./test_data/test_x -t du -m ./model/dense_aug.hdf5 -o 
 Note. Both scripts accept the following arguments. All arguments come with default values. So the script can be run directly using "python track_video.py" or "python track_frames.py"
 ```
    -v path to the video file;
+   
+   -i path to the images
 
    -t model type; du for Dense UNet and u for UNet;
 
