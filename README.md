@@ -40,8 +40,8 @@ Installing Tensorflow can be a painful process. Please refer to the official doc
 ### Downloading the trained model
 
 #### The following models are the models that produce some of the results in Figure 2.
-- dense_aug.hdf5 -- Dense UNet model trained with 50% of the training data with augmentation
-- unet_aug.hdf5 -- UNet model trained with 50% of the training data with augmentation
+- [dense_aug.hdf5](https://drive.google.com/file/d/1r1PnFw8KihmJnhXLUsKiw9BxJTSm3PhM/view?usp=sharing) -- Dense UNet model trained with 50% of the training data with augmentation
+- [unet_aug.hdf5](https://drive.google.com/file/d/181unum8CBgpzoGs-4KFqOwj7k7ELlK3R/view?usp=sharing) -- UNet model trained with 50% of the training data with augmentation
 
 #### The following models are the models that produce the results in Table 1 and Table 2.
 - unet_xentropy.hdf5		
