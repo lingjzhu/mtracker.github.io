@@ -2,8 +2,6 @@
 
 **MTracker** is a tool for automatic splining tongue shapes in ultrasound images by harnessing the power of deep convolutional neural networks. It is developed at the Department of Linguistics, University of Michgian to address the need of spining a large-scale ultrasound project. MTracker also allows for human correction by interfacing with the [GetContours Suite](https://github.com/mktiede/GetContours) developed by Mark Tiede at Haskins Laboratory.
 
-## We are preparing the release of code and data, which will be available very soon.
-
 
 ## About MTracker
 
@@ -55,7 +53,7 @@ Installing Tensorflow can be a painful process. Please refer to the official doc
 ### Preparing your data
 
 A muted ultrasound video for demonstration purpose only is available in the "demo" folder.
-
+The test data is also available upon request.
 
 ### Quickstart guide
 #### tracking tongue contours in a video
