@@ -7,13 +7,26 @@
 
 MTracker was developed by Jian Zhu, [Will Styler](http://savethevowels.org/will/), and Ian Calloway at the University of Michigan, on the basis of data collected with [Patrice Beddor](https://sites.lsa.umich.edu/beddor/) and [Andries Coetzee](https://sites.lsa.umich.edu/coetzee/).  
 
-It was first described in [a poster](https://github.com/lingjzhu/mtracker.github.io/blob/master/mtracker_asa2018_poster%202.pdf) at the [175th Meeting of the Acoustical Society of America in Minneapolis](https://acousticalsociety.org/program-of-175th-meeting-of-the-acoustical-society-of-america/).  The tools, and trained model, will be made available below.
+The paper associated with this tool can be found in this paper, [A CNN-based tool for automatic tongue contour tracking in ultrasound images](https://arxiv.org/abs/1907.10210). It was first described in [a poster](https://github.com/lingjzhu/mtracker.github.io/blob/master/mtracker_asa2018_poster%202.pdf) at the [175th Meeting of the Acoustical Society of America in Minneapolis](https://acousticalsociety.org/program-of-175th-meeting-of-the-acoustical-society-of-america/).  The tools, and trained model, will be made available below.
 
 This work is inspired by a [Deep Learning Tutorial for Kaggle Ultrasound Nerve Segmentation competition](https://github.com/jocicmarko/ultrasound-nerve-segmentation). 
 
+
+
 ### Attribution and Citation
 
-For now, until a peer-reviewed publication is available, you can cite this software as:
+For now, you can cite this software as:
+
+```
+@article{zhu2019cnn,
+  title={A CNN-based tool for automatic tongue contour tracking in ultrasound images},
+  author={Zhu, Jian and Styler, Will and Calloway, Ian},
+  journal={arXiv preprint arXiv:1907.10210},
+  year={2019}
+}
+```
+
+Or
 
 Zhu, J., Styler, W., and Calloway, I. C. (2018). Automatic tongue contour extraction in ultrasound images with convolutional neural networks. The Journal of the Acoustical Society of America, 143(3):1966–1966. [https://doi.org/10.1121/1.5036466](https://doi.org/10.1121/1.5036466)
 
