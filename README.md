@@ -7,7 +7,8 @@
 
 MTracker was developed by Jian Zhu, [Will Styler](http://savethevowels.org/will/), and Ian Calloway at the University of Michigan, on the basis of data collected with [Patrice Beddor](https://sites.lsa.umich.edu/beddor/) and [Andries Coetzee](https://sites.lsa.umich.edu/coetzee/).  
 
-The paper associated with this tool is [A CNN-based tool for automatic tongue contour tracking in ultrasound images](https://arxiv.org/abs/1907.10210).
+You can refer to this paper for more information. [A CNN-based tool for automatic tongue contour tracking in ultrasound images](https://arxiv.org/abs/1907.10210).
+
 
 It was first described in [a poster](https://github.com/lingjzhu/mtracker.github.io/blob/master/mtracker_asa2018_poster%202.pdf) at the [175th Meeting of the Acoustical Society of America in Minneapolis](https://acousticalsociety.org/program-of-175th-meeting-of-the-acoustical-society-of-america/).  The tools, and trained model, will be made available below.
 
