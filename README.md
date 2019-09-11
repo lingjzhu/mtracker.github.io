@@ -57,18 +57,11 @@ Installing Tensorflow can be a painful process. Please refer to the official doc
 - [dense_aug.hdf5](https://drive.google.com/file/d/1r1PnFw8KihmJnhXLUsKiw9BxJTSm3PhM/view?usp=sharing) -- Dense UNet model trained with 50% of the training data with augmentation
 - [unet_aug.hdf5](https://drive.google.com/file/d/181unum8CBgpzoGs-4KFqOwj7k7ELlK3R/view?usp=sharing) -- UNet model trained with 50% of the training data with augmentation
 
-#### The following models are the models that produce the results in Table 1 and Table 2.
-- unet_xentropy.hdf5		
-- unet_dice.hdf5		
-- unet_compound.hdf5
-- dense_xentropy
-- dense_dice.hdf5
-- dense_compound.hdf5
-
 
 ### Preparing your data
 
 A muted ultrasound video for demonstration purpose only is available in the "demo" folder.
+
 The test data is also available [here](https://drive.google.com/drive/folders/14x-lG-gDZE-3qzMI5MPYJ7q2-8vu5Xc1?usp=sharing).
 
 ### Quickstart guide
