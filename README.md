@@ -5,9 +5,9 @@
 
 ## About MTracker
 
-MTracker was developed by Jian Zhu, [Will Styler](http://savethevowels.org/will/), and Ian Calloway at the University of Michigan, on the basis of data collected with [Patrice Beddor](https://sites.lsa.umich.edu/beddor/) and [Andries Coetzee](https://sites.lsa.umich.edu/coetzee/).  
-
 You can refer to this paper for more information. [A CNN-based tool for automatic tongue contour tracking in ultrasound images](https://arxiv.org/abs/1907.10210).
+
+MTracker was developed by Jian Zhu, [Will Styler](http://savethevowels.org/will/), and Ian Calloway at the University of Michigan, on the basis of data collected with [Patrice Beddor](https://sites.lsa.umich.edu/beddor/) and [Andries Coetzee](https://sites.lsa.umich.edu/coetzee/).  
 
 
 It was first described in [a poster](https://github.com/lingjzhu/mtracker.github.io/blob/master/mtracker_asa2018_poster%202.pdf) at the [175th Meeting of the Acoustical Society of America in Minneapolis](https://acousticalsociety.org/program-of-175th-meeting-of-the-acoustical-society-of-america/).  The tools, and trained model, will be made available below.
@@ -69,7 +69,7 @@ Installing Tensorflow can be a painful process. Please refer to the official doc
 ### Preparing your data
 
 A muted ultrasound video for demonstration purpose only is available in the "demo" folder.
-The test data is also available upon request.
+The test data is also available [here](https://drive.google.com/drive/folders/14x-lG-gDZE-3qzMI5MPYJ7q2-8vu5Xc1?usp=sharing).
 
 ### Quickstart guide
 #### tracking tongue contours in a video
