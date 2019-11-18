@@ -62,7 +62,7 @@ Installing Tensorflow can be a painful process. Please refer to the official doc
 
 A muted ultrasound video for demonstration purpose only is available in the "demo" folder.
 
-The test data are available [here](https://drive.google.com/drive/folders/14x-lG-gDZE-3qzMI5MPYJ7q2-8vu5Xc1?usp=sharing).
+The test data are available [here](https://drive.google.com/drive/folders/14x-lG-gDZE-3qzMI5MPYJ7q2-8vu5Xc1?usp=sharing). Please do not redistribute.
 
 ### Quickstart guide
 #### tracking tongue contours in a video
