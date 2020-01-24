@@ -43,7 +43,7 @@ To install MTracker for your own use, follow the instructions below:
 
 - Python >= 3.6
 - Keras >= 2.0.8
-- Tensorflow/Tensorflow-gpu, CUDA and CUDNN（if you need GPU support）
+- Tensorflow/Tensorflow-gpu==1.14, CUDA and CUDNN（if you need GPU support）
 - Scikit-image 1.3.0
 - Imageio
 - Praatio
