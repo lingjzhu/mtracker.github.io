@@ -83,34 +83,37 @@ with open(path_to_csv_output, mode='w') as out:
     out = csv.writer(out, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     out.writerow(['x','y','uniqueframe'])
     for index, image in tqdm(enumerate(video)):
-        img = cp.crop(image,boundary)
-        img = cp.normalize(img,[128,128])
-        img = np.expand_dims(img,0)
-        #img = np.expand_dims(img,-1)
-        pred = model.predict(img)
-        pred = np.squeeze(pred)
-        img = np.squeeze(img)
-        pred = resize(np.squeeze(pred),output_size)
-        
-        sample = np.where(pred < 0.5,0,1)
-        skeleton = skeletonize(sample)
-        s = cp.interpolate_tongue_spline(skeleton,smooth=True)
-        
-        # convert the coordinate back to fit the original image
-        s[:,0]=s[:,0]+boundary[2]
-        s[:,1]=s[:,1]+boundary[0]
-        
-        #ac = cp.get_active_contour(s,img,smooth=False)
-        for j in range(len(s)):
-            out.writerow([s[j,0],s[j,1],index])
-        
-        # plot every Nth frame for inspection
-        if index%N == 0:
-            fig, ax = plt.subplots(figsize=(9, 5))
-            ax.imshow(image, cmap=plt.cm.gray)
-            #ax.plot(three['xcoord'], three['ycoord'], '--r', lw=3)
-            ax.plot(s[:,0], s[:,1], 'ro', lw=3)
-            fig.savefig(path_to_figures+str(index)+'.jpg')
-            plt.clf()  
-            plt.close() 
+        try:
+            img = cp.crop(image,boundary)
+            img = cp.normalize(img,[128,128])
+            img = np.expand_dims(img,0)
+            #img = np.expand_dims(img,-1)
+            pred = model.predict(img)
+            pred = np.squeeze(pred)
+            img = np.squeeze(img)
+            pred = resize(np.squeeze(pred),output_size)
+            
+            sample = np.where(pred < 0.5,0,1)
+            skeleton = skeletonize(sample)
+            s = cp.interpolate_tongue_spline(skeleton,smooth=True)
+            
+            # convert the coordinate back to fit the original image
+            s[:,0]=s[:,0]+boundary[2]
+            s[:,1]=s[:,1]+boundary[0]
+            
+            #ac = cp.get_active_contour(s,img,smooth=False)
+            for j in range(len(s)):
+                out.writerow([s[j,0],s[j,1],index])
+            
+            # plot every Nth frame for inspection
+            if index%N == 0:
+                fig, ax = plt.subplots(figsize=(9, 5))
+                ax.imshow(image, cmap=plt.cm.gray)
+                #ax.plot(three['xcoord'], three['ycoord'], '--r', lw=3)
+                ax.plot(s[:,0], s[:,1], 'ro', lw=3)
+                fig.savefig(path_to_figures+str(index)+'.jpg')
+                plt.clf()  
+                plt.close() 
+        except:
+            continue
 
