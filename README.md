@@ -67,12 +67,12 @@ The test data are available [here](https://drive.google.com/drive/folders/14x-lG
 ### Quickstart guide
 #### tracking tongue contours in a video
 ```
-python track_video.py -v ./demo/demo_video.mp4 -t du -m ./model/dense_aug.hdf5 -o ./demo -n 5
+python track_video.py -v ./demo/demo_video.mp4 -t du -m ./model/dense_aug.hdf5 -o ./demo/out.csv -f ./demo -n 5
 ```
 
 #### tracking tongue contours in an image sequence
 ```
-python track_frames.py -i ./test_data/test_x -t du -m ./model/dense_aug.hdf5 -o ./demo -n 5
+python track_frames.py -i ./test_data/test_x -t du -m ./model/dense_aug.hdf5 -o ./demo/out.csv -f ./demo -n 5
 ```
 Note. Both scripts accept the following arguments. All arguments come with default values. So the script can be run directly using "python track_video.py" or "python track_frames.py"
 ```
