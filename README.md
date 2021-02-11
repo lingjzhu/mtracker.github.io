@@ -6,7 +6,7 @@
 ## About MTracker
 
 You can refer to this paper for more information. [A CNN-based tool for automatic tongue contour tracking in ultrasound images](https://arxiv.org/abs/1907.10210). 
-[This paper was accepted by Interspeech 2020 but was withdrawn due to unability to attend].
+[This paper was accepted by Interspeech 2020 but was withdrawn due to unability to travel to the conference].
 
 MTracker was developed by Jian Zhu, [Will Styler](http://savethevowels.org/will/), and Ian Calloway at the University of Michigan, on the basis of data collected with [Patrice Beddor](https://sites.lsa.umich.edu/beddor/) and [Andries Coetzee](https://sites.lsa.umich.edu/coetzee/).  
 
